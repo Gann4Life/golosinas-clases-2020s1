@@ -23,11 +23,10 @@ class Bombon {
 
 class BombonDuro inherits Bombon {
 	override method mordisco() { peso -= 1 }
-	method dureza () {
-		const valorMax = if (peso > 12) 3 else 0
-		const valorMed = if (peso.between(8, 12)) 2 else 0
-		const valorMin = if (peso < 8) 1 else 0
-		return valorMax + valorMed + valorMin
+	method dureza() {
+		if (peso > 12) return 3
+		else if (peso.between(8, 12)) return 2
+		else return 0
 	}
 }
 
