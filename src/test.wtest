@@ -7,6 +7,8 @@ describe "Golosinas y sus sabores" {
 	const tuttifrutti = new Tuttifrutti(sabores=[frutilla, vainilla, chocolate], libreDeGluten=true)	
 	const chupetin = new Chupetin(sabor=naranja)
 	const alfajor = new Alfajor(sabor=frutilla)
+	
+	const carameloRelleno = new CarameloRelleno(sabor=limon)
 
 	
 	test "Peso del bombon duro" {
@@ -40,5 +42,14 @@ describe "Golosinas y sus sabores" {
 	
 	test "Alfajor raro, sigue siendo comestible." {
 		assert.equals(frutilla, alfajor.sabor())
+	}
+	
+	test "Caramelo ácido (...)" {
+		assert.equals(limon, carameloRelleno.sabor())
+	}
+	
+	test "(...) con chocolate...?" {
+		carameloRelleno.mordisco()
+		assert.equals(chocolate, carameloRelleno.sabor())
 	}
 }

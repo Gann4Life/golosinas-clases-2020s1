@@ -39,7 +39,7 @@ class BombonDuro inherits Bombon {
 	method initialize() {
 		super()
 	}
-	
+		
 	override method mordisco() { peso -= 1 }
 	method dureza() {
 		if (peso > 12) return 3
@@ -65,6 +65,13 @@ class Caramelo inherits Golosina {
 	method peso() { return peso }
 	method mordisco() { peso = peso - 1 }
 	method libreGluten() { return true }
+}
+
+class CarameloRelleno inherits Caramelo {
+	override method mordisco() {
+		super()
+		sabor = chocolate
+	}
 }
 
 
