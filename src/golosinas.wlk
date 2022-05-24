@@ -21,6 +21,16 @@ class Bombon {
 	method libreGluten() { return true }
 }
 
+class BombonDuro inherits Bombon {
+	override method mordisco() { peso -= 1 }
+	method dureza () {
+		const valorMax = if (peso > 12) 3 else 0
+		const valorMed = if (peso.between(8, 12)) 2 else 0
+		const valorMin = if (peso < 8) 1 else 0
+		return valorMax + valorMed + valorMin
+	}
+}
+
 
 class Alfajor {
 	var peso = 15
