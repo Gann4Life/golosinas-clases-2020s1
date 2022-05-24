@@ -11,17 +11,35 @@ object limon { }
 /*
  * Golosinas
  */
-class Bombon {
+ class Golosina {
+ 	var sabor
+ 	method sabor() = sabor
+ }
+ 
+ class GolosinaConSabores {
+ 	var sabores
+ 	method sabores() = sabores
+ }
+ 
+class Bombon inherits Golosina {
 	var peso = 15
+	
+	method initialize() {
+		sabor = chocolate
+	}
 	
 	method precio() { return 5 }
 	method peso() { return peso }
 	method mordisco() { peso = peso * 0.8 - 1 }
-	method sabor() { return frutilla }
 	method libreGluten() { return true }
 }
 
 class BombonDuro inherits Bombon {
+	
+	method initialize() {
+		super()
+	}
+	
 	override method mordisco() { peso -= 1 }
 	method dureza() {
 		if (peso > 12) return 3
@@ -31,28 +49,26 @@ class BombonDuro inherits Bombon {
 }
 
 
-class Alfajor {
+class Alfajor inherits Golosina{
 	var peso = 15
 	
 	method precio() { return 12 }
 	method peso() { return peso }
 	method mordisco() { peso = peso * 0.8 }
-	method sabor() { return chocolate }
 	method libreGluten() { return false }
 }
 
-class Caramelo {
+class Caramelo inherits Golosina {
 	var peso = 5
 
 	method precio() { return 12 }
 	method peso() { return peso }
 	method mordisco() { peso = peso - 1 }
-	method sabor() { return frutilla }
 	method libreGluten() { return true }
 }
 
 
-class Chupetin {
+class Chupetin inherits Golosina {
 	var peso = 7
 	
 	method precio() { return 2 }
@@ -62,11 +78,10 @@ class Chupetin {
 			peso = peso * 0.9
 		}
 	}
-	method sabor() { return naranja }
 	method libreGluten() { return true }
 }
 
-class Oblea {
+class Oblea inherits Golosina {
 	var peso = 250
 	
 	method precio() { return 5 }
@@ -79,23 +94,25 @@ class Oblea {
 			// pierde el 25% del peso
 			peso = peso - (peso * 0.25)
 		}
-	}	
-	method sabor() { return vainilla }
+	}
 	method libreGluten() { return false }
 }
 
-class Chocolatin {
+class Chocolatin inherits Golosina {
 	// hay que acordarse de *dos* cosas, el peso inicial y el peso actual
 	// el precio se calcula a partir del precio inicial
 	// el mordisco afecta al peso actual
 	var pesoInicial
 	var comido = 0
 	
+	method initialize() {
+		sabor = chocolate
+	}
+	
 	method pesoInicial(unPeso) { pesoInicial = unPeso }
 	method precio() { return pesoInicial * 0.50 }
 	method peso() { return (pesoInicial - comido).max(0) }
 	method mordisco() { comido = comido + 2 }
-	method sabor() { return chocolate }
 	method libreGluten() { return false }
 
 }
@@ -116,9 +133,8 @@ class GolosinaBaniada {
 }
 
 
-class Tuttifrutti {
+class Tuttifrutti inherits GolosinaConSabores {
 	var libreDeGluten
-	var sabores = [frutilla, chocolate, naranja]
 	var saborActual = 0
 	
 	method mordisco() { saborActual += 1 }	

@@ -1,18 +1,44 @@
 import golosinas.*
-describe "Bombón duro" {
+
+describe "Golosinas y sus sabores" {
 	
-	const bombon = new BombonDuro()	
+	const bombon = new BombonDuro()
+	const chocolatin = new Chocolatin(sabor=chocolate, pesoInicial = 25)
+	const tuttifrutti = new Tuttifrutti(sabores=[frutilla, vainilla, chocolate], libreDeGluten=true)	
+	const chupetin = new Chupetin(sabor=naranja)
+	const alfajor = new Alfajor(sabor=frutilla)
+
 	
-	test "Peso" {
+	test "Peso del bombon duro" {
 		assert.that(bombon.peso() == 15)
 	}
 	
-	test "Dureza" {
+	test "Dureza del bombon duro" {
 		assert.that(bombon.dureza() == 3)
 	}
 	
-	test "Mordisco" {
+	test "Mordisco al bombon duro" {
 		bombon.mordisco()
 		assert.that(bombon.peso() == 14)
+	}
+	
+	test "Sabor del bombon duro" {
+		assert.equals(chocolate, bombon.sabor())
+	}
+	
+	test "Sabores tuttifrutti" {
+		assert.equals(frutilla, tuttifrutti.sabor())
+	}
+	
+	test "Sabor del chocolatín... choco... vaya." {
+		assert.equals(chocolate, chocolatin.sabor())
+	}
+	
+	test "El chupetín más odiado" {
+		assert.equals(naranja, chupetin.sabor())
+	}
+	
+	test "Alfajor raro, sigue siendo comestible." {
+		assert.equals(frutilla, alfajor.sabor())
 	}
 }
