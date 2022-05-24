@@ -1,0 +1,7 @@
+import golosinas.*
+describe "Bombón duro" {
+	const bombon = new BombonDuro()	
+	test "Peso" {
+		assert.that(bombon.peso() == 15)
+	}
+}
